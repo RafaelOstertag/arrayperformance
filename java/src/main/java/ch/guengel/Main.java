@@ -1,23 +1,23 @@
 package ch.guengel;
 
 public class Main {
-    private static void printWithNanos(String label, long t0, long t1) {
-        System.out.printf("%s took %dµs\n", label, t1 - t0);
-    }
-
+    private static final int ITERATIONS = 10_000;
     public static void main(String[] args) {
-        Array array = new Array();
+        try (var logFile = new LogFile("results-java.csv")) {
 
-        long t0 = System.nanoTime();
-        array.fillArray();
-        long t1 = System.nanoTime();
-        printWithNanos("Fill array", t0, t1);
+            var array = new Array();
 
-        t0 = System.nanoTime();
-        long result = array.sumUpForward();
-        t1 = System.nanoTime();
-        printWithNanos("Summing up forward", t0, t1);
+            var t0 = System.nanoTime();
+            array.fillArray();
+            var t1 = System.nanoTime();
+            logFile.write("fillArray", 0, t1 - t0);
 
-        System.out.println("Result " + result);
+            for (var i = 0; i < ITERATIONS; i++) {
+                t0 = System.nanoTime();
+                array.sumUpForward();
+                t1 = System.nanoTime();
+                logFile.write("sumUpForward", i, t1 - t0);
+            }
+        }
     }
 }
