@@ -1,5 +1,7 @@
 {
-    "files.associations": {
-        "chrono": "cpp"
-    }
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "files.associations": {
+    "chrono": "cpp"
+  }
 }
