@@ -12,12 +12,14 @@ public class Main {
             var t1 = System.nanoTime();
             logFile.write("fillArray", 0, t1 - t0);
 
+            long sum = 0;
             for (var i = 0; i < ITERATIONS; i++) {
                 t0 = System.nanoTime();
-                array.sumUpForward();
+                sum = array.sumUpForward();
                 t1 = System.nanoTime();
                 logFile.write("sumUpForward", i, t1 - t0);
             }
+            System.out.println(sum);
         }
     }
 }
