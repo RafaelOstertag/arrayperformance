@@ -17,7 +17,7 @@ public class LogFile implements AutoCloseable{
 
     void write(String label, int iteration, long durationNs) {
         try {
-            logWriter.write("java-app;" + label + ";" + iteration + ";" + durationNs);
+            logWriter.write("java-array;" + label + ";" + iteration + ";" + durationNs);
             logWriter.newLine();
         } catch (IOException e) {
             throw new RuntimeException("Cannot write to log file", e);
