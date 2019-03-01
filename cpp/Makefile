@@ -1,11 +1,15 @@
 DEFAULT_FLAGS = -Wall -Werror -O3 -pedantic -std=c++17
 EXECUTABLE = cpp-array
 
-all: cpp-array
+all: $(EXECUTABLE)
 clean:
+	rm -f *.o
 	rm -f $(EXECUTABLE)
 
-$(EXECUTABLE): array.cpp
-	$(CXX) $(DEFAULT_FLAGS) $(CXXFLAGS) -o $@ $<
+.cc.o:
+	$(CXX) $(DEFAULT_FLAGS) $(CXXFLAGS) -c -o $@ $<
+
+$(EXECUTABLE): array.o logfile.o
+	$(CXX) $(DEFAULT_FLAGS) $(CXXFLAGS) -o $@ $^
 
 .PHONY: clean
