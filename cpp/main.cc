@@ -9,10 +9,13 @@
 
 namespace {
 constexpr int ITERATIONS{10000};
-constexpr char logFilename[]{"cpp-results.csv"};
-constexpr char statsFilename[]{"cpp-stats.csv"};
+constexpr char LOG_FILENAME[]{"cpp-results.csv"};
+constexpr char STATS_FILENAME[]{"cpp-stats.csv"};
+constexpr char FILL_STRUCT_ARRAY_LABEL[]{"fillStructArray"};
+constexpr char FILL_SUM_ARRAY_LABEL[]{"fillSumArray"};
+constexpr char SUM_OF_ARRAY_LABEL[]{"sumOfArray"};
 
-LogFile logfile(logFilename);
+LogFile logfile(LOG_FILENAME);
 Statistics statistics;
 }  // namespace
 
@@ -42,21 +45,21 @@ int main(int argc, char** argv) {
     auto t0 = takeTime();
     array.fillStructArray();
     auto t1 = takeTime();
-    log("fillStructArray", 0, t0, t1);
+    log(FILL_STRUCT_ARRAY_LABEL, 0, t0, t1);
 
     long result = 0;
     for (auto i = 0; i < ITERATIONS; i++) {
         t0 = takeTime();
         array.fillSumArray();
         t1 = takeTime();
-        log("fillSumArray", i, t0, t1);
+        log(FILL_SUM_ARRAY_LABEL, i, t0, t1);
 
         t0 = takeTime();
         result = array.sumOfArray();
         t1 = takeTime();
-        log("sumOfArray", i, t0, t1);
+        log(SUM_OF_ARRAY_LABEL, i, t0, t1);
         printProgress(i);
     }
     std::cout << std::endl << "SumOfArray: " << result << std::endl;
-    statistics.dumpToFile(statsFilename);
+    statistics.dumpToFile(STATS_FILENAME);
 }
