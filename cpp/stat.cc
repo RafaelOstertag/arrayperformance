@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <cmath>
+#include <fstream>
 #include <limits>
 #include <numeric>
-#include <ofstream>
 
 #include "stat.hh"
 

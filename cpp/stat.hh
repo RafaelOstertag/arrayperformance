@@ -41,7 +41,7 @@ class Statistics {
     void dumpToFile(const std::string& filename) const;
 
    private:
-    std::map<std::string, Statistics> statisticsMap;
+    std::map<std::string, StatisticsEntry> statisticsMap;
 };
 
 #endif
