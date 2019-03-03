@@ -10,7 +10,17 @@ import (
 )
 
 const (
-	iterations = 10000
+	iterations           = 10000
+	resultsFile          = "go-results.csv"
+	statisticsFile       = "go-stats.csv"
+	fillStructArrayLabel = "fillStructArray"
+	fillSumArrayLabel    = "fillSumArray"
+	sumOfArrayLabel      = "sumOfArray"
+)
+
+var (
+	logf  = logfile.New(resultsFile)
+	stats = statistics.Start()
 )
 
 func progress(i int) {
@@ -19,37 +29,36 @@ func progress(i int) {
 	}
 }
 
+func record(label string, iteration int, start, end time.Time) {
+	logf.Write(label, iteration, start, end)
+	stats.Record(label, start, end)
+
+}
+
 func main() {
+	defer logf.Close()
+
 	arr := array.New()
+
 	start := time.Now()
 	arr.FillStructArray()
 	end := time.Now()
-
-	logf := logfile.New("go-results.csv")
-	defer logf.Close()
-
-	logf.Write("fillStructArray", 0, start, end)
-	stats := statistics.Start()
-	stats.Record("fillStructArray", start, end)
+	record(fillStructArrayLabel, 0, start, end)
 
 	var sum int64
 	for i := 0; i < iterations; i++ {
 		start = time.Now()
 		arr.FillSumArray()
 		end = time.Now()
-
-		logf.Write("fillSumArray", i, start, end)
-		stats.Record("fillSumArray", start, end)
+		record(fillSumArrayLabel, i, start, end)
 
 		start = time.Now()
 		sum = arr.SumOfArray()
 		end = time.Now()
-
-		logf.Write("sumOfArray", i, start, end)
-		stats.Record("sumOfArray", start, end)
+		record(sumOfArrayLabel, i, start, end)
 
 		progress(i)
 	}
 	fmt.Printf("\nSum %d\n", sum)
-	stats.DumpToFile("go-stats.csv")
+	stats.DumpToFile(statisticsFile)
 }
