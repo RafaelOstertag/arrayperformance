@@ -66,7 +66,7 @@ void StatisticsEntry::addDataPoint(long data) {
 
 long StatisticsEntry::average() const {
     if (!_averageComputed) {
-        long sum = std::accumulate(dataPoints.begin(), dataPoints.end(), 0);
+        long sum = std::accumulate(dataPoints.begin(), dataPoints.end(), 0L);
         _average = std::lround(sum / dataPoints.size());
         _averageComputed = true;
     }
