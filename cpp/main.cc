@@ -1,12 +1,19 @@
+
+#include <algorithm>
 #include <chrono>
 #include <iostream>
 
 #include "array.hh"
 #include "logfile.hh"
+#include "stat.hh"
 
 namespace {
-LogFile logfile("cpp-results.csv");
 constexpr int ITERATIONS{10000};
+constexpr char logFilename[]{"cpp-results.csv"};
+constexpr char statsFilename[]{"cpp-stats.csv"};
+
+LogFile logfile(logFilename);
+Statistics statistics;
 }  // namespace
 
 void log(const std::string& label, int iteration,
@@ -15,6 +22,7 @@ void log(const std::string& label, int iteration,
     auto duration =
         std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t0).count();
     logfile.write(label, iteration, duration);
+    statistics.record(label, duration);
 }
 
 inline std::chrono::high_resolution_clock::time_point takeTime() {
@@ -28,7 +36,7 @@ void printProgress(int i) {
     }
 }
 
-int main(int, char**) {
+int main(int argc, char** argv) {
     Array array;
 
     auto t0 = takeTime();
@@ -50,4 +58,5 @@ int main(int, char**) {
         printProgress(i);
     }
     std::cout << std::endl << "SumOfArray: " << result << std::endl;
+    statistics.dumpToFile(statsFilename);
 }

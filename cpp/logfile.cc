@@ -1,7 +1,7 @@
 #include "logfile.hh"
 
-LogFile::LogFile(const std::string& file) {
-    _logfile.open(file, std::ios_base::trunc);
+LogFile::LogFile(const std::string& file) : _logfile{} {
+    _logfile.open(file, std::ios::trunc);
 }
 
 void LogFile::write(const std::string& label, int iteration, long duration) {

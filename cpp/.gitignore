@@ -1,3 +1,4 @@
 cpp-array
 *.o
 *.csv
+cpp-stats.txt
