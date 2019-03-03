@@ -3,5 +3,5 @@ src/github.com
 src/golang.org
 bin
 pkg
-./go-array
+/go-array
 *.csv
