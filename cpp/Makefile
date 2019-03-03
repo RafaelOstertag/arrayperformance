@@ -9,7 +9,7 @@ clean:
 .cc.o:
 	$(CXX) $(DEFAULT_FLAGS) $(CXXFLAGS) -c -o $@ $<
 
-$(EXECUTABLE): array.o logfile.o
+$(EXECUTABLE): array.o logfile.o main.o
 	$(CXX) $(DEFAULT_FLAGS) $(CXXFLAGS) -o $@ $^
 
 .PHONY: clean
