@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	iterations = 100
+	iterations = 10000
 )
 
 func progress(i int) {
