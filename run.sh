@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-TEST_DIRECTORIES="java cpp go"
+TEST_DIRECTORIES="java cpp go python"
 
 for d in ${TEST_DIRECTORIES}
 do

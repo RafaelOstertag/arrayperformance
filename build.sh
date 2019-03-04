@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-TEST_DIRECTORIES="java cpp go"
+TEST_DIRECTORIES="java cpp go python"
 
 function err() {
     echo "$@" 1>&2
@@ -32,10 +32,12 @@ function preflight() {
     commandPresentOrDie java
     commandPresentOrDie go
     commandPresentOrDie clang++
+    commandPresentOrDie python3.7
 
     export GO=go
     export GOROOT=$(goRoot `which go`)
     export CXX=clang++
+    export PYTHON=python3.7
 }
 
 function goRoot() {
