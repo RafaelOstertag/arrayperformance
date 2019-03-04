@@ -11,3 +11,11 @@ do
     ./run.sh
     popd >/dev/null
 done
+
+echo "*** Results ***"
+echo ""
+
+for d in ${TEST_DIRECTORIES}
+do
+    cat "$d/$d-stats.csv"
+done
