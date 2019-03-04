@@ -1,4 +1,4 @@
-package ch.guengel;
+package ch.guengel.support;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -7,7 +7,7 @@ import java.io.IOException;
 public class LogFile implements AutoCloseable{
     private final BufferedWriter logWriter;
 
-    LogFile(String logfile) {
+    public LogFile(String logfile) {
         try {
             logWriter = new BufferedWriter(new FileWriter(logfile));
         } catch (IOException e) {
@@ -15,7 +15,7 @@ public class LogFile implements AutoCloseable{
         }
     }
 
-    void write(String label, int iteration, long durationNs) {
+    public void write(String label, int iteration, long durationNs) {
         try {
             logWriter.write("java-array;" + label + ";" + iteration + ";" + durationNs);
             logWriter.newLine();
