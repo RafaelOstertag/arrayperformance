@@ -3,7 +3,7 @@
 import time
 import support
 
-iterations = 10
+iterations = 10000
 statistics = support.Statistics()
 logfile = support.Log("python-results.csv")
 
