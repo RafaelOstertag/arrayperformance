@@ -8,7 +8,7 @@ public class Main {
     private static final String RESULTS_FILENAME = "java-results.csv";
     private static final LogFile LOG_FILE = new LogFile(RESULTS_FILENAME);
     private static final int ITERATIONS = 10_000;
-    private static final String FILL_ARRAY_LABEL = "fillArray";
+    private static final String FILL_ARRAY_LABEL = "fillStructArray";
     private static final String FILL_SUM_ARRAY_LABEL = "fillSumArray";
     private static final String SUM_OF_ARRAY_LABEL = "sumOfArray";
     private static final String STATISTICS_FILENAME = "java-stats.csv";
