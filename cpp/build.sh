@@ -1,4 +1,4 @@
 #!/bin/bash
 
 make clean
-make all
+make all CXX=${CXX:-c++}

@@ -1,10 +1,55 @@
 #!/bin/bash
+set -eu
 
 TEST_DIRECTORIES="java cpp go"
 
+function err() {
+    echo "$@" 1>&2
+}
+
+function commandNotFound() {
+    local command="$1"
+    err "$command not found in \$PATH=$PATH"
+}
+
+function testCommandPresence() {
+    local command="$1"
+    which "$command" >/dev/null 2>&1
+}
+
+function commandPresentOrDie() {
+    local command="$1"
+    if ! testCommandPresence "${command}"
+    then
+        err "${command} not found in \$PATH=$PATH"
+        exit 1
+    fi
+
+    echo "${command} found"
+}
+
+function preflight() {
+    commandPresentOrDie java
+    commandPresentOrDie go
+    commandPresentOrDie clang++
+
+    export GO=go
+    export GOROOT=$(goRoot `which go`)
+    export CXX=clang++
+}
+
+function goRoot() {
+    local goBin="$1"
+    dirname `dirname "${goBin}"`
+}
+
+preflight
+
 for d in ${TEST_DIRECTORIES}
 do
-    pushd $d
+    pushd $d >/dev/null
+    echo ""
+    echo "*** Build $d ***"
     ./build.sh
-    popd
+    popd >/dev/null
 done
