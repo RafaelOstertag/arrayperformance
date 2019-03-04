@@ -80,7 +80,7 @@ func (s *Statistics) DumpToFile(filename string) {
 	defer file.Close()
 
 	for k, v := range s.statistics {
-		stat := fmt.Sprintf("%s;%v;%v;%v\n", k, v.min, v.average(), v.max)
+		stat := fmt.Sprintf("go-array;%s;%v;%v;%v\n", k, v.min, v.average(), v.max)
 		file.WriteString(stat)
 	}
 }

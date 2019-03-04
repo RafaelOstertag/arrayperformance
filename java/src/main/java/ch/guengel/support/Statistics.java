@@ -19,7 +19,7 @@ public class Statistics {
             for (Map.Entry<String, StatisticsEntry> entry : statisticsEntryMap.entrySet()) {
                 String key = entry.getKey();
                 StatisticsEntry value = entry.getValue();
-                var line = String.format("%s;%d;%d;%d\n", key, value.getMin(), value.getAverage(), value.getMax());
+                var line = String.format("java-array;%s;%d;%d;%d\n", key, value.getMin(), value.getAverage(), value.getMax());
                 fileWriter.write(line);
             }
         } catch (IOException e) {

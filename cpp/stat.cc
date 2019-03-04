@@ -88,7 +88,7 @@ void Statistics::dumpToFile(const std::string& filename) const {
 
     std::for_each(statisticsMap.begin(), statisticsMap.end(), [&file](auto x) {
         auto stats = x.second;
-        file << stats.label() << ";" << stats.min() << ";" << stats.average()
+        file << "cpp-array;" << stats.label() << ";" << stats.min() << ";" << stats.average()
              << ";" << stats.max() << std::endl;
     });
     file.close();
