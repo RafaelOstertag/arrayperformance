@@ -3,7 +3,7 @@
 import time
 import support
 
-iterations = 10000
+iterations = 1000000
 statistics = support.Statistics()
 logfile = support.Log("python-results.csv")
 
@@ -18,16 +18,12 @@ class Array(object):
 
     def fill_array(self):
         for i in range(0, Array.number_of_elements):
-            struct = self._struct_array[i]
-            struct['valueA'] = i
-            struct['valueB'] = i + 1
-            struct['valueC'] = i + 2
+            self._struct_array[i]['valueA'] = i
+            self._struct_array[i]['valueB'] = i + 1
+            self._struct_array[i]['valueC'] = i + 2
 
     def fill_sum_array(self):
-        for i in range(0, Array.number_of_elements):
-            struct = self._struct_array[i]
-            self._sum_array[i] = struct['valueA'] + \
-                struct['valueB'] + struct['valueC']
+        self._sum_array = [sum(struct.values()) for struct in self._struct_array]
 
     def sum_of_array(self):
         return sum(self._sum_array)
