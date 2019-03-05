@@ -21,7 +21,7 @@ class Array(object):
                                       range(0, Array.number_of_elements)))
 
     def fill_sum_array(self):
-        self._sum_array = list(map(lambda struct: sum(struct.values()), self._struct_array))
+        self._sum_array = list(map(lambda s: s['valueA'] + s['valueB'] + s['valueB'], self._struct_array))
 
     def sum_of_array(self):
         return sum(self._sum_array)
