@@ -17,17 +17,11 @@ class Array(object):
         self._sum_array = [0 for _ in range(0, Array.number_of_elements)]
 
     def fill_array(self):
-        for i in range(0, Array.number_of_elements):
-            struct = self._struct_array[i]
-            struct['valueA'] = i
-            struct['valueB'] = i + 1
-            struct['valueC'] = i + 2
+        self._struct_array = list(map(lambda i: {'valueA': i, 'valueB': i+1, 'valueC': i+2},
+                                      range(0, Array.number_of_elements)))
 
     def fill_sum_array(self):
-        for i in range(0, Array.number_of_elements):
-            struct = self._struct_array[i]
-            self._sum_array[i] = struct['valueA'] + \
-                struct['valueB'] + struct['valueC']
+        self._sum_array = list(map(lambda s: s['valueA'] + s['valueB'] + s['valueB'], self._struct_array))
 
     def sum_of_array(self):
         return sum(self._sum_array)
