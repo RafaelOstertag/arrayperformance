@@ -8,7 +8,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 }
 
-mainClassName = 'ch.guengel.mainKt'
+jar {
+    manifest {
+        attributes 'Main-Class': 'MainKt'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+mainClassName = 'MainKt'
