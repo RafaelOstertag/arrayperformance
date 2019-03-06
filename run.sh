@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-source ./common.sh
+source ./scriptlib/common.sh
 EXCLUDED_TESTS="python"
 
 function isExcluded() {
