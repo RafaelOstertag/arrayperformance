@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-TEST_DIRECTORIES="java cpp go python"
+source ./common.sh
 
 function err() {
     echo "$@" 1>&2
@@ -50,8 +50,7 @@ preflight
 for d in ${TEST_DIRECTORIES}
 do
     pushd $d >/dev/null
-    echo ""
-    echo "*** Build $d ***"
+    printAction "Build $d"
     ./build.sh
     popd >/dev/null
 done
