@@ -26,11 +26,14 @@ done
 
 printAction "Results"
 
+rm -f stats.csv
 for d in ${TEST_DIRECTORIES}
 do
     if isExcluded "$d"
     then
         continue
     fi
-    cat "$d/$d-stats.csv"
+    cat "$d/$d-stats.csv" >> stats.csv
 done
+
+cat stats.csv
